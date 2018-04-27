@@ -1,0 +1,58 @@
+@import './../../Assets/css/variables.css';
+
+.containerFilter {
+  background-color: #333132;
+  color: var(--Yellow);
+  padding: 0.5rem;
+}
+
+.filterTitle {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.containerDropdownDownload{
+display: flex;
+flex-direction: column;
+}
+
+.containerDownload {
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 700px) {
+  .containerFilter {
+    padding: 1rem;
+  }
+
+  .filterTitle{
+    margin-bottom: 1rem;
+  }
+
+  .containerAllDropdown {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+@media (min-width: 1025px) {
+  .containerFilter {
+    flex-basis: 30%;
+    width: 30%;
+    padding: 1rem;
+  }
+
+  .filterTitle{
+    margin-bottom: 2rem;
+  }
+
+  .containerDropdownDownload{
+   flex-direction: column;
+  }
+
+    .containerAllDropdown {
+      flex-direction: column;
+    }
+}

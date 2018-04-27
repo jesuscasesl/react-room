@@ -1,0 +1,7 @@
+@media (min-width: 1025px) {
+  .containerListRoom {
+    flex-basis: 70%;
+    width: 70%;
+    overflow: auto;
+  }
+}

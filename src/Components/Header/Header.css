@@ -1,0 +1,36 @@
+@import './../../Assets/css/variables.css';
+
+.containerHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  padding: 1rem;
+  color: var(--Black);
+  background-color: var(--White);
+  box-shadow: 0px 2px 15px 0px var(--Black);
+}
+
+.headerTitle {
+  text-align: center;
+  font-size: 2.9rem;
+  font-family: 'Luckiest Guy', cursive;
+}
+
+.titleSpan {
+  padding: 0 0.7rem;
+  color: var(--Yellow);
+  position: relative;
+}
+
+.titleSpan::before {
+  content: '';
+  background-color: var(--Black);
+  border-radius: 50%;
+  position: absolute;
+  padding: 1.5rem;
+  z-index: -1;
+  top: -13%;
+  left: 4%;
+}

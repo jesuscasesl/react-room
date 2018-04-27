@@ -1,0 +1,24 @@
+@import './../../Assets/css/variables.css';
+
+.containerError {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.errorTitle{
+  font-size: 2rem;
+  color: var(--Red);
+}
+
+@media (min-width: 1025px) {
+.containerMain {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .containerError {
+    width: 100%
+  }
+}

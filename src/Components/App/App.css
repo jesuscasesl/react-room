@@ -1,0 +1,11 @@
+.containerApp {
+  padding: 1rem;
+  min-width: 340px;
+}
+
+@media (min-width: 1025px) {
+  .containerApp {
+    height: 98vh;
+    overflow: hidden;
+  }
+}

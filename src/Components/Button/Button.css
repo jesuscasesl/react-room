@@ -1,0 +1,32 @@
+@import './../../Assets/css/variables.css';
+
+.btn{
+  display: block;
+  margin: 1rem auto;
+  padding: 0.6rem 1rem 0.4rem;
+  cursor: pointer;
+  font-family: 'Luckiest Guy', cursive;
+  color: var(--White);
+}
+
+.btnGreen {
+  background-color: var(--GreenLight);
+  box-shadow: 0 9px var(--Green);
+}
+
+.btnGreen:active {
+  background-color: var(--Green);
+  box-shadow: 0 5px var(--GreenLight);
+  transform: translateY(4px);
+}
+
+.btnOrange {
+  background-color: var(--OrangeLight);
+  box-shadow: 0 9px var(--Orange);
+}
+
+.btnOrange:active{
+  background-color: var(--Orange);
+  box-shadow: 0 5px var(--OrangeLight);
+  transform: translateY(4px);
+}

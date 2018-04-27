@@ -1,0 +1,49 @@
+.containerDropdown {
+  display: flex;
+  margin: 0.5rem 0;
+}
+
+.dropdownLabel, .dropdownSelect {
+  width: 50%;
+}
+
+.dropdownLabel {
+  font-size: 1.5rem;
+}
+
+.dropdownSelect {
+  border-radius: 5px
+}
+
+@media (min-width: 700px) {
+  .containerDropdown {
+    margin: 0;
+  }
+
+  .dropdownLabel, .dropdownSelect {
+    width: initial;
+  }
+
+  .dropdownSelect {
+    margin-left: 0.55rem;
+  }
+
+}
+@media (min-width: 1025px) {
+  .containerDropdown {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: 0 0 2rem;
+  }
+
+  .dropdownLabel {
+    margin-bottom: 1rem;
+  }
+
+  .dropdownSelect {
+    height: 2rem;
+    margin: 0
+  }
+}

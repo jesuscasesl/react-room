@@ -1,0 +1,17 @@
+@import './../../Assets/css/variables.css';
+
+.green {
+  border: none;
+  background-color: var(--GreenLight);
+  box-shadow: 0 9px var(--Green);
+  margin: 1rem 0;
+  padding: 0.5rem;
+  color: var(--White);
+  font-family: 'Luckiest Guy', cursive;
+}
+
+.green:active {
+  background-color: var(--Green);
+  box-shadow: 0 5px var(--GreenLight);
+  transform: translateY(4px);
+}
