@@ -1,24 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import './Main.css';
+import './Main.css'
 
 import Filter from './../Filter/Filter'
 import ListRoom from './../ListRoom/ListRoom'
-import { orderByy, filterBy } from './../../Helper/Helper'
-import { fetchRoom } from './../../Api/Api'
+import { orderByPrice, filterBy } from './../../helper/helper'
+import { fetchRoom } from './../../api/api'
 
 const url = 'https://www.spotahome.com/api/public/listings/similars/'
 
 class Main extends Component {
-
   static propTypes = {
-    idRoom: PropTypes.number
+    idRoom: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]).isRequired
+  }
+
+  static defaultProps = {
+    idRoom: 122836
   }
 
   state = {
-    allRoom: [],
-    rooms: [],
+    allRooms: [],
+    presentRooms: [],
     order: 'asc',
     filter: '0',
     err: false
@@ -36,23 +42,46 @@ class Main extends Component {
     fetchRoom( url, idRoom )
       .then( resRooms => {
         const { homecards } = resRooms.data
-        const filterRooms = filterBy( homecards, this.state.filter )
+        const allRooms = homecards.map( room => {
+          const {
+            adId,
+            city,
+            currencySymbol,
+            id,
+            mainPhotoUrl,
+            pricePerMonth,
+            roomType,
+            title } = room
+
+          return {
+            adId,
+            city,
+            currencySymbol,
+            id,
+            mainPhotoUrl,
+            pricePerMonth,
+            roomType: roomType[0],
+            title }
+        })
+        const filterRooms = filterBy( allRooms, this.state.filter )
         return ({
-          allRoom: homecards,
+          allRooms,
           filterRooms
         })
       })
       .then( rooms => {
-        const orderedRooms = orderByy( rooms.filterRooms, this.state.order )
+        const { allRooms, filterRooms } = rooms
+        const orderedRooms = orderByPrice( filterRooms, this.state.order )
         return({
-          allRoom: rooms.allRoom,
+          allRooms,
           orderedRooms
         })
       })
       .then( rooms => {
+        const { allRooms, orderedRooms } = rooms
         this.setState({
-          rooms: rooms.orderedRooms,
-          allRoom: rooms.allRoom
+          allRooms,
+          presentRooms: orderedRooms
         })
       })
       .catch( err => {
@@ -62,17 +91,18 @@ class Main extends Component {
   }
 
   _handleFilterType = propsFilter => {
-    const newRoomsfilter = filterBy(this.state.allRoom, propsFilter)
-    const newRoomsOrder = orderByy(newRoomsfilter, this.state.order)
-    this.setState({ rooms: newRoomsOrder, filter: propsFilter })
+    const newRoomsfilter = filterBy( this.state.allRooms, propsFilter )
+    const newRoomsOrder = orderByPrice( newRoomsfilter, this.state.order )
+    this.setState( { presentRooms: newRoomsOrder, filter: propsFilter } )
   }
 
   _handleOrdertype = propsOrder => {
-    const orderedRoom = orderByy(this.state.rooms, propsOrder)
-    this.setState({ order: propsOrder, rooms: orderedRoom })
+    console.log('propsOrder',propsOrder)
+    const orderedRoom = orderByPrice( this.state.presentRooms, propsOrder )
+    this.setState( { presentRooms: orderedRoom, order: propsOrder } )
   }
 
-  _printListRoom = () => {
+  _renderListRoom = () => {
     if ( this.state.err ) {
       return (
         <div className = 'containerError'>
@@ -80,9 +110,11 @@ class Main extends Component {
         </div>
       )
     }
-    return <ListRoom
-            idPresentRoom = { this.props.idRoom }
-            rooms = { this.state.rooms } />
+    return (
+      <ListRoom
+        idPresentRoom = { this.props.idRoom }
+        rooms = { this.state.presentRooms } />
+    )
   }
 
   render () {
@@ -91,11 +123,11 @@ class Main extends Component {
         <Filter
           filterType = { this._handleFilterType }
           orderPrice = { this._handleOrdertype }
-          rooms = { this.state.rooms }/>
-        { this._printListRoom() }
+          rooms = { this.state.presentRooms }/>
+        { this._renderListRoom() }
       </div>
     )
   }
 }
 
-export default Main;
+export default Main

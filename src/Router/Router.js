@@ -1,5 +1,5 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
 
 import MainPage from './../Pages/MainPage/MainPage'
 import DetailsPage from './../Pages/DetailsPage/DetailsPage'
@@ -11,13 +11,13 @@ const Router = () => {
         <Route
           exact
           path = '/'
-          component = { MainPage }/>
+          component = { MainPage } />
         <Route
           path = '/id/:id'
-          component = { MainPage }/>
+          component = { MainPage } />
         <Route
           path = '/details/:id'
-          component = { DetailsPage }/>
+          component = { DetailsPage } />
         <Route
           path = '*'
           component = { NotFoundPage } />
@@ -25,4 +25,4 @@ const Router = () => {
   )
 }
 
-export default Router;
+export default Router

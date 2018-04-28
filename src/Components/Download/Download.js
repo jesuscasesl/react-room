@@ -6,25 +6,32 @@ import './Download.css'
 const dataDefault = 'data:text/json;charset=utf-8,'
 
 const Download = props => {
+  const { jsonRooms } = props
 
-  const { roomJson } = props
   return (
     <a
       className = 'btn green'
-      href = { `${dataDefault}${encodeURIComponent(JSON.stringify(roomJson, null, "\t"))}` }
-      download = 'downloadJSON.json'>Download JSON</a>
+      href = { `${dataDefault}${encodeURIComponent(JSON.stringify(jsonRooms, null, "\t"))}` }
+      download = 'downloadJSON.json' >Download JSON</a>
   )
 }
 
 Download.propTypes = {
-  roomJson: PropTypes.arrayOf(PropTypes.shape({
-    adId: PropTypes.number,
+  jsonRooms: PropTypes.arrayOf(PropTypes.shape({
+    adId: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]),
     city: PropTypes.string,
     currencySymbol: PropTypes.string,
-    id: PropTypes.number,
+    id: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]),
     mainPhotoUrl: PropTypes.string,
     pricePerMonth: PropTypes.number,
-    title: PropTypes.string
+    roomType: PropTypes.number,
+    title: PropTypes.string,
   }))
 }
 

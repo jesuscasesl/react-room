@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 import './App.css'
 
@@ -7,11 +7,11 @@ import Router from './../../Router/Router'
 
 const App = () => {
   return (
-    <div className="containerApp">
+    <div className = 'containerApp'>
       <Header />
       <Router />
     </div>
   )
 }
 
-export default App;
+export default App

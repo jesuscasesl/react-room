@@ -8,8 +8,7 @@ const Dropdown = props => {
     children,
     labelDropdown,
     onChangeProperty,
-    typeDropdown
-  } = props
+    typeDropdown } = props
 
   const _handleChangeProperty = e => {
     e.preventDefault()
@@ -21,11 +20,11 @@ const Dropdown = props => {
   return (
     <div className = 'containerDropdown'>
       <label
-        htmlFor = { typeDropdown }
-        className = 'dropdownLabel'>{ labelDropdown }</label>
+        className = 'dropdownLabel'
+        htmlFor = { typeDropdown } >{ labelDropdown }</label>
       <select
-        id = { typeDropdown }
         className = 'dropdownSelect'
+        id = { typeDropdown }
         name = { typeDropdown }
         onChange = { _handleChangeProperty } >
         { React.Children.toArray( children ).map( option => option ) }

@@ -1,5 +1,5 @@
-@import './Assets/css/reset.css';
-@import './Assets/css/variables.css';
+@import './assets/css/reset.css';
+@import './assets/css/variables.css';
 
 body {
   background-color: var(--Gray);

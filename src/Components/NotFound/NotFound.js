@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 import './NotFound.css'
 
-import ImgNotFound from './../../Assets/img/house404.png'
+import ImgNotFound from './assets/room404.png'
 import Button from './../Button/Button'
 
 const NotFound = () => {
@@ -17,7 +17,7 @@ const NotFound = () => {
       <Link to = '/'>
         <Button
           btnStyle = 'btn btnGreen'
-          btnText= 'Home'/>
+          btnText = 'Home' />
       </Link>
     </section>
   )

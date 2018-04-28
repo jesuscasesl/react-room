@@ -15,6 +15,7 @@ const Details = props => {
       isDetails,
       photoUrl,
       price,
+      roomType,
       symbol,
       title } = props.roomDetails
 
@@ -22,12 +23,14 @@ const Details = props => {
       <div className = 'containerDetails'>
         <Room
           city = { city }
-          title = { title }
-          photoUrl = { photoUrl }
-          price = { price }
-          symbol = { symbol }
+          idPresentRoom = { idPresentRoom }
           idRoom = { idRoom }
           isDetails = { isDetails }
+          photoUrl = { photoUrl }
+          price = { price }
+          roomType = { roomType }
+          symbol = { symbol }
+          title = { title }
         />
         <Link to = { `/id/${idPresentRoom}` }>
           <Button
@@ -39,7 +42,30 @@ const Details = props => {
 }
 
 Details.propTypes = {
-  roomDetails: PropTypes.object
+  roomDetails: PropTypes.shape({
+    city: PropTypes.string,
+    idPresentRoom: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]).isRequired,
+    idRoom: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]).isRequired,
+    isDetails: PropTypes.bool,
+    photoUrl: PropTypes.string,
+    price: PropTypes.number,
+    roomType: PropTypes.number,
+    symbol: PropTypes.string,
+    title: PropTypes.string
+  })
+}
+
+Details.defaultProps = {
+  roomDetails: {
+    idPresentRoom: 122836,
+    idRoom: 122836
+  }
 }
 
 export default Details

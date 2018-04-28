@@ -6,20 +6,20 @@ import './ListRoom.css'
 import Room from './../Room/Room'
 
 const ListRoom = props => {
-
-  const { rooms, idPresentRoom } = props
+  const { idPresentRoom, rooms } = props
 
   return (
     <section className = 'containerListRoom'>
       {
         rooms.map( room => {
           const {
-            id,
             adId,
             city,
+            currencySymbol,
+            id,
             mainPhotoUrl,
             pricePerMonth,
-            currencySymbol,
+            roomType,
             title } = room
 
           return (
@@ -30,6 +30,7 @@ const ListRoom = props => {
               idRoom = { adId }
               photoUrl = { mainPhotoUrl }
               price = { pricePerMonth }
+              roomType = { roomType }
               symbol = { currencySymbol }
               title = { title } />
           )
@@ -40,8 +41,34 @@ const ListRoom = props => {
 }
 
 ListRoom.propsTypes = {
-  idPresentRoom: PropTypes.number,
-  rooms: PropTypes.array
+  idPresentRoom: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]).isRequired,
+  rooms: PropTypes.arrayOf(PropTypes.shape({
+    adId: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]).isRequired,
+    city: PropTypes.string,
+    currencySymbol: PropTypes.string,
+    id: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]).isRequired,
+    mainPhotoUrl: PropTypes.string,
+    pricePerMonth: PropTypes.number,
+    roomType: PropTypes.number,
+    title: PropTypes.string
+  }))
+}
+
+ListRoom.defaultProps = {
+  idPresentRoom: 122836,
+  rooms: {
+    adId: 122836,
+    id: 122836
+  }
 }
 
 export default ListRoom

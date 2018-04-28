@@ -8,7 +8,7 @@ Project created with react-create-app.
 npm i
 ```
 
-## Eject dependencies
+## Eject
 
 ```
 npm run eject

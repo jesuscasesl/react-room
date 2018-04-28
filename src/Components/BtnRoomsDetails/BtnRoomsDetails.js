@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import './BtnRoomsDetails.css'
@@ -7,15 +7,15 @@ import './BtnRoomsDetails.css'
 import Button from './../Button/Button'
 
 const BtnRoomsDetails = props => {
-
   const {
     city,
     idPresentRoom,
     idRoom,
     photoUrl,
     price,
+    roomType,
     symbol,
-    title } = props.btnprops
+    title } = props.btnDetailsProps
 
   return (
     <div className = 'containerBtnRoomsDetails'>
@@ -36,6 +36,7 @@ const BtnRoomsDetails = props => {
               idRoom: `${idRoom}`,
               photoUrl,
               price,
+              roomType,
               symbol,
               title,
             }
@@ -49,7 +50,29 @@ const BtnRoomsDetails = props => {
 }
 
 BtnRoomsDetails.propTypes = {
-  btnprops: PropTypes.object
+  btnDetailsProps: PropTypes.shape({
+    city: PropTypes.string,
+    idPresentRoom: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]).isRequired,
+    idRoom: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]).isRequired,
+    photoUrl: PropTypes.string,
+    price: PropTypes.number,
+    roomType: PropTypes.number,
+    symbol: PropTypes.string,
+    title: PropTypes.string,
+  })
+}
+
+BtnRoomsDetails.defaultProps = {
+  btnDetailsProps: {
+    idPresentRoom: 122836,
+    idRoom: 122836,
+  }
 }
 
 export default BtnRoomsDetails
