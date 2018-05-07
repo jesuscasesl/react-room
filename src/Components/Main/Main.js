@@ -24,18 +24,26 @@ class Main extends Component {
 
   state = {
     allRooms: [],
-    presentRooms: [],
-    order: 'asc',
+    err: false,
     filter: '0',
-    err: false
+    isNewProp: false,
+    order: 'asc',
+    presentRooms: [],
   }
+
 
   componentDidMount = () => {
     this._getRoom(this.props.idRoom)
   }
 
-  componentWillReceiveProps = props => {
-    this._getRoom( props.idRoom )
+  static getDerivedStateFromProps = propIdRoom => {
+    return { isNewProp: true, newIdRoom: propIdRoom.idRoom }
+  }
+
+  componentDidUpdate = () => {
+    if(this.state.isNewProp){
+      this._getRoom( this.state.newIdRoom )
+    }
   }
 
   _getRoom = idRoom  => {
@@ -81,7 +89,9 @@ class Main extends Component {
         const { allRooms, orderedRooms } = rooms
         this.setState({
           allRooms,
-          presentRooms: orderedRooms
+          presentRooms: orderedRooms,
+          isNewProp: false
+
         })
       })
       .catch( err => {
@@ -97,7 +107,6 @@ class Main extends Component {
   }
 
   _handleOrdertype = propsOrder => {
-    console.log('propsOrder',propsOrder)
     const orderedRoom = orderByPrice( this.state.presentRooms, propsOrder )
     this.setState( { presentRooms: orderedRoom, order: propsOrder } )
   }
